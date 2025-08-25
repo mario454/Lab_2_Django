@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Trainees
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'insert_tr' %}">New Trainee</a>
+<h1>All Trainees</h1>
+<table width="100%" border="1" style="border-collapse: collapse;">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Image</th>
+    <th>Action</th>
+  </tr>
+  {% for trainee in trainees %}
+  <tr>
+    <td>{{ trainee.id }}</td>
+    <td>{{ trainee.name }}</td>
+    <td>
+      <img src="{{ trainee.image.url }}" width="100px" height="100px">
+    </td>
+    <td>
+      <div class="action">
+        <a href="{% url 'update_tr' trainee.id %}">Update</a>
+        <a href="{% url 'delete_tr' trainee.id %}">Delete</a>
+      </div>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
